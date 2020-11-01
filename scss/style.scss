@@ -1,0 +1,859 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Rubik", sans-serif;
+	background-color: #5199dd;
+	// font-family: 'Source Sans Pro', sans-serif;
+}
+
+// Стили для страницы истории
+a{
+	text-decoration: none;
+}
+.container{
+	max-width: 1200px;
+	padding: 0 15px;
+	margin: 0 auto;
+}
+
+.historyContent{
+	height: 100%;
+	width: 100%;
+	color: #ffffff;
+	// overflow: hidden;
+	@media only screen and (max-width : 767px) {
+		color: #0d0d0d;
+	}
+
+	&__current{
+		width: 200px;
+		height: 60px;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: fixed;
+		top: 59px;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		background-color: #ffffff;
+		border-radius: 0 0 50px 50px;
+		transition: all 0.3s ease;
+		z-index: 1;
+
+		@media only screen and (max-width : 991px) {
+			width: 150px;
+			height: 50px;
+			top: 48px;
+		}
+		@media only screen and (max-width : 767px){
+			width: 100px;
+			height: 40px;
+			// top: 48px;
+			z-index: 1;
+		}
+
+
+
+		&.active{
+			z-index: 9;
+			border: 1px solid lighten(#5199dd, 5%);
+			border-top: none;
+			width: 350px;
+
+			@media only screen and (max-width : 767px){
+				width: 100%;
+				border-radius: 0;
+				border: none;
+				border-bottom: 1px solid lighten(#5199dd, 5%);
+			}
+			.currentYear__data{
+				margin: 0 10px;
+				border-bottom: 3px solid #5199dd;
+			}
+			
+			.currentYear{
+				padding: 60px 0;
+
+				&__content{
+					padding: 0px 132px; 
+
+					@media only screen and (max-width : 767px){
+						padding: 0px calc(50% - 32px); 
+					}
+					
+				}
+				
+			}
+
+		}
+	}
+}
+
+
+
+.currentYear{
+	// width: 100%;
+	height: 100%;
+	// padding: 0 0 25px 0;
+	// overflow-x: auto;
+	overflow-y: hidden;
+	
+	// direction: rtl;
+	display: flex;
+	
+
+
+	&__data{
+		// position: absolute;
+		color: #5199dd;
+		font-size: 28px;
+		font-weight: bold;
+		cursor:pointer;
+		
+
+		@media only screen and (max-width : 767px){
+			font-size: 22px;
+		}
+
+		@media only screen and (max-width : 576px){
+			font-size: 20px;
+		}
+
+
+	}
+
+	&__content{
+		align-items: center;
+		display: flex;
+		justify-content: center;
+	}
+	.fade{
+		animation-name: fadeInOut;
+		animation-duration: 1s;
+	}
+
+	
+
+	
+}
+
+
+.year-item{
+	color: #5199dd;
+	font-size: 28px;
+	font-weight: bold;
+	margin: 0 10px;
+
+	@media only screen and (max-width : 767px){
+		font-size: 22px;
+	}
+
+	@media only screen and (max-width : 576px){
+		font-size: 20px;
+	}
+}
+
+.lastYear {
+	display:flex;
+	justify-content: center;
+	padding: 10px 0;
+	&:last-child{
+		padding: 10px 0 50px 0;
+	}
+	&__data {
+		font-size: 28px;
+		font-weight: bold;
+		color: #ffffff;
+
+
+		@media only screen and (max-width : 767px){
+			font-size: 22px;
+		}
+		
+		@media only screen and (max-width : 576px){
+			font-size: 20px;
+		}
+	}
+
+}
+
+.currentYearLine {
+	position: relative;
+
+	&:before {
+		content: "";
+		position: absolute;
+		width: 4px;
+		height: 100%;
+		top: 0;
+		left: 50%;
+		right: 50%;
+		transform: translateX(-50%);
+		background-color: #ffffff;
+		@media only screen and (max-width: 767px) {
+			width: 3px;
+		}
+	}
+}
+.hisroryContent__inner {
+	width: 100%;
+
+	@media only screen and (max-width: 767px) {
+		padding-top: 90px;
+	}
+}
+
+.historyYear > .historyYear__box {
+	@media only screen and (max-width: 767px) {
+		&:first-child {
+			margin-top: 10px;
+		}
+
+		&:last-child {
+			margin-bottom: 10px;
+		}
+	}
+}
+.historyYear {
+	width: 100%;
+	padding: 60px 0;
+
+	@media only screen and (max-width: 767px) {
+		padding: 10px 0;
+
+		&:last-child {
+			padding-bottom: 80px;
+		}
+	}
+
+	@media only screen and (max-width: 767px) {
+		&:first-child {
+			padding-top: 40px;
+		}
+
+		&:last-child {
+			padding: 0;
+			padding-bottom: 30px !important;
+		}
+	}
+	&__box {
+		height: 350px;
+		position: relative;
+		display: flex;
+		align-items: center;
+		margin: 40px 0;
+		// padding: 50px 0;
+		@media only screen and (max-width: 991px) {
+			height: 300px;
+			margin: 20px 0;
+		}
+		@media only screen and (max-width: 767px) {
+			height: 0;
+			height: auto;
+			position: relative;
+			// box-shadow: 0px 4px 4px rgba(185, 185, 185, 0.69);
+			margin: 40px 0;
+		}
+	}
+	&__colOne {
+		display: flex;
+		flex: 0 1 50%;
+		justify-content: flex-end;
+	}
+
+	&__colTwo {
+		display: flex;
+		flex: 0 1 50%;
+		justify-content: flex-start;
+	}
+	&__img {
+		background-repeat: no-repeat;
+		background-size: contain;
+		// margin: 0 50px 0 50px;
+		height: 100%;
+		width: 100%;
+		position: absolute;
+
+		@media only screen and (max-width: 991px) {
+			width: 75%;
+		}
+		@media only screen and (max-width: 767px) {
+			width: 100%;
+			z-index: -1;
+		}
+	}
+
+	&__imgLeft {
+		background-position: right;
+		@media only screen and (max-width: 767px) {
+			background-position: right;
+		}
+	}
+
+	&__imgRight {
+		background-position: left;
+		@media only screen and (max-width: 767px) {
+			background-position: right;
+		}
+	}
+}
+
+.historyYear__colOne.imageProject {
+	padding-right: 100px;
+	@media only screen and (max-width: 767px) {
+		padding-right: 0;
+		right: 20px;
+	}
+}
+.historyYear__colTwo.imageProject {
+	padding-left: 100px;
+	@media only screen and (max-width: 767px) {
+		padding-left: 0;
+
+		right: 20px;
+	}
+}
+
+//Включение точек, в зависимости от расположения контента
+.dotLeft {
+	&:after {
+		position: absolute;
+		content: "";
+		width: 12px;
+		height: 12px;
+		background-color: #5199dd;
+		border-radius: 50px;
+		border: 3px solid #ffffff;
+		left: -9px;
+		bottom: -7px;
+		@media only screen and (max-width: 767px) {
+			display: none;
+		}
+	}
+	&:before {
+		position: absolute;
+		content: "";
+		width: 0%;
+		height: 2px;
+		background-color: #ffffff;
+		left: 0;
+		bottom: 0;
+		@media only screen and (max-width: 767px) {
+			display: none;
+		}
+	}
+	&.fade {
+		&:before {
+			width: 100%;
+			transition: all 0.5s ease;
+		}
+	}
+}
+.dotRight {
+	text-align: end;
+	padding-right: 26px;
+
+	&:after {
+		position: absolute;
+		content: "";
+		width: 12px;
+		height: 12px;
+		background-color: #5199dd;
+		border-radius: 50px;
+		border: 3px solid #ffffff;
+		right: -9px;
+		bottom: -7px;
+		@media only screen and (max-width: 767px) {
+			display: none;
+		}
+	}
+	&:before {
+		position: absolute;
+		content: "";
+		width: 0%;
+		height: 2px;
+		background-color: #ffffff;
+		right: 0;
+		bottom: 0;
+		@media only screen and (max-width: 767px) {
+			display: none;
+		}
+	}
+	&.fade {
+		&:before {
+			width: 100%;
+			transition: all 0.5s ease;
+		}
+	}
+}
+
+//-------------------------END--------------------------
+
+.historyYearArticle {
+	max-width: 544px;
+	@media only screen and (max-width: 767px) {
+		width: 100%;
+	}
+	&__year {
+		position: relative;
+		font-size: 16px;
+		padding-bottom: 8px;
+		padding-left: 26px;
+		@media only screen and (max-width: 767px) {
+			display: flex;
+			justify-content: flex-start;
+			padding: 0;
+			opacity: 0.5;
+		}
+	}
+
+	&__text {
+		margin: 20px 0 0 0px;
+		@media only screen and (max-width: 767px) {
+			width: 100%;
+		}
+	}
+
+	&__textRight {
+		margin-left: 127px;
+		padding-right: 12px;
+
+		@media only screen and (max-width: 1199px) {
+			margin-left: 80px;
+		}
+
+		@media only screen and (max-width: 991px) {
+			margin-left: 50px;
+		}
+		@media only screen and (max-width: 767px) {
+			margin-left: 0;
+		}
+	}
+
+	&__textLeft {
+		margin-right: 127px;
+		padding-left: 26px;
+
+		@media only screen and (max-width: 1199px) {
+			margin-right: 80px;
+		}
+		@media only screen and (max-width: 991px) {
+			margin-right: 50px;
+		}
+		@media only screen and (max-width: 767px) {
+			padding: 0;
+		}
+	}
+	&__title {
+		display: block;
+		font-size: 22px;
+		font-weight: bold;
+		line-height: 1;
+		margin-bottom: 15px;
+		opacity: 0;
+		&.fade {
+			opacity: 1;
+			transition: all 2s ease;
+			transition-delay: 0.3s;
+		}
+
+		@media only screen and (max-width: 991px) {
+			font-size: 20px;
+			margin-bottom: 14px;
+		}
+		@media only screen and (max-width: 767px) {
+			color: #5199dd;
+		}
+	}
+	&__descr {
+		font-size: 18px;
+		opacity: 0;
+		&.fade {
+			opacity: 1;
+			transition: all 2s ease;
+			transition-delay: 0.5s;
+		}
+		@media only screen and (max-width: 991px) {
+			font-size: 16px;
+		}
+	}
+	&__ref {
+		margin-top: 15px;
+		opacity: 0;
+		&.fade {
+			opacity: 1;
+			transition: all 2s ease;
+			transition-delay: 0.6s;
+		}
+		@media only screen and (max-width: 991px) {
+			// margin-top: 20px;
+		}
+	}
+	&__link {
+		color: #ffffff;
+		font-size: 16px;
+		font-weight: bold;
+		display: block;
+		text-decoration: none;
+		display: inline-block;
+		border-bottom: 1px solid transparent;
+		transition: all 0.3s ease;
+		&:hover {
+			border-color: #ffffff;
+		}
+
+		@media only screen and (max-width: 767px) {
+			color: #0d0d0d;
+			opacity: 0.5;
+			&:hover {
+				border-color: #0d0d0d;
+				opacity: 0.5;
+			}
+		}
+	}
+}
+
+// Убираем картинки и делаем блок с текстом по всей ширине на разрешении 767px
+.imageProject {
+	position: relative;
+	height: 100%;
+	width: 100%;
+
+	@media only screen and (max-width: 767px) {
+		flex: 0 1 100%;
+		opacity: 0.2;
+		position: absolute;
+		height: 70%;
+		z-index: 8;
+	}
+}
+
+.textProject {
+	@media only screen and (max-width: 767px) {
+		flex: 0 1 100%;
+		justify-content: flex-start;
+		position: relative;
+		padding: 25px 20px;
+		background-color: #ffffff;
+
+		z-index: 7;
+	}
+}
+//-----------------------------------------------------------
+
+.historyPage + footer {
+	position: relative;
+	z-index: 4;
+}
+
+.header.fixed {
+	position: fixed;
+}
+
+.header {
+	width: 100%;
+	background-color: #fff;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+	z-index: 10;
+
+	&__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 10px 0;
+	}
+
+	&__logo {
+	}
+
+	&__logo-img {
+		width: 30px;
+
+		@media only screen and (max-width: 992px) {
+			width: 20px;
+		}
+	}
+
+	&__links {
+		display: flex;
+		justify-content: space-between;
+
+		@media only screen and (max-width: 992px) {
+			display: none;
+		}
+	}
+
+	&__link {
+		font-size: 14px;
+		color: #0d0d0d;
+		font-weight: 500;
+		margin-right: 25px;
+		transition: all 0.3s ease;
+		position: relative;
+
+		&:before {
+			position: absolute;
+			content: "";
+			height: 2px;
+			width: 0%;
+			background-color: #0058a3;
+			bottom: -3px;
+			right: 50%;
+			transition: all 0.3s ease;
+		}
+
+		&:after {
+			position: absolute;
+			content: "";
+			height: 2px;
+			width: 0%;
+			background-color: #0058a3;
+			bottom: -3px;
+			left: 50%;
+			transition: all 0.3s ease;
+		}
+
+		&:hover {
+			color: #0058a3;
+
+			&:before {
+				position: absolute;
+				content: "";
+				height: 2px;
+				width: 50%;
+				background-color: #0058a3;
+				bottom: -3px;
+				right: 0;
+			}
+
+			&:after {
+				position: absolute;
+				content: "";
+				height: 2px;
+				width: 50%;
+				background-color: #0058a3;
+				bottom: -3px;
+				left: 0;
+			}
+		}
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+
+	&__sign {
+		display: flex;
+		align-items: center;
+		@media only screen and (max-width: 992px) {
+			display: none;
+		}
+
+		a {
+			font-size: 14px;
+			font-weight: 500;
+			
+		}
+	}
+
+	&__sign-in {
+		margin-right: 20px;
+		text-align: center;
+		display: block;
+		width: 120px;
+		padding: 10px 0;
+		border-radius: 4px;
+		background-color: #0058a3;
+		color: #ffffff;
+		transition: all 0.3s ease;
+
+		&:hover {
+			background-color: lighten(#0058a3, 15%);
+		}
+	}
+
+	&__sign-up {
+		color: #0058a3;
+	}
+
+	&__burger-menu {
+		display: none;
+		width: 18px;
+		height: 16px;
+		position: relative;
+		cursor: pointer;
+		@media only screen and (max-width: 992px) {
+			display: block;
+		}
+
+		&:after,
+		&:before {
+			content: "";
+			position: absolute;
+			width: 100%;
+			height: 2px;
+			background-color: #0058a3;
+			border-radius: 10px;
+		}
+
+		&:after {
+			top: 0;
+		}
+
+		&:before {
+			bottom: 0;
+		}
+	}
+}
+
+.burger-menu {
+	border-radius: 10px;
+	display: block;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+	height: 2px;
+	background-color: #0058a3;
+}
+
+.footer {
+	background-color: transparent;
+	padding: 25px 0;
+
+	@media only screen and (max-width: 767px) {
+		padding: 15px 0;
+	}
+
+	&__inner {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	&__menu {
+		display: flex;
+		flex: 0 1 100%;
+		justify-content: center;
+		margin-bottom: 15px;
+
+		@media only screen and (max-width: 767px) {
+			display: none;
+		}
+	}
+
+	&__link {
+		font-size: 14px;
+		margin-right: 25px;
+		color: #ffffff;
+		border-bottom: 1px solid transparent;
+		transition: all 0.3s ease;
+		&:hover {
+			border-color: #ffffff;
+		}
+
+	}
+
+	&__company {
+		margin-right: 10px;
+		font-size: 14px;
+		color: #ffffff;
+
+		@media only screen and (max-width: 767px) {
+			flex: 0 1 100%;
+			text-align: center;
+			margin-bottom: 10px;
+		}
+	}
+
+	&__policy {
+		@media only screen and (max-width: 767px) {
+			flex: 0 1 100%;
+			text-align: center;
+		}
+	}
+}
+
+.header {
+	&__mobile-menu {
+		// display: none;
+		position: absolute;
+		width: 100%;
+		top: 48px;
+		height: calc(100vh - 48px);
+		background-color: #fff;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.5s ease;
+		transform: translateX(-100%);
+	}
+
+	&__mobile-menu.active{
+		transform: translateX(0);
+	}
+}
+.mobile-menu {
+	width: 100%;
+	&__inner {
+	}
+
+	&__links {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-size: 16px;
+		margin-bottom: 60px;
+	}
+
+	&__link {
+		margin-bottom: 20px;
+		color: #0058a3;
+		border-bottom: 1px solid transparent;
+		transition: all 0.3s ease;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		&:hover {
+			border-color: #0058a3;
+		}
+	}
+
+	&__sign {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		a {
+			font-size: 16px;
+		}
+	}
+
+	&__sign-in {
+		display: block;
+		width: 200px;
+		text-align: center;
+		padding: 10px 0;
+		border-radius: 4px;
+		background-color: #0058a3;
+		color: #ffffff;
+		margin-bottom: 20px;
+		transition: all 0.3s ease;
+
+		&:hover {
+			background-color: lighten(#0058a3, 15%);
+		}
+	}
+
+	&__sign-up {
+		color: #0058a3;
+	}
+}
